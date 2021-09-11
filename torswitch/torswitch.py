@@ -4,7 +4,7 @@ from stem import Signal
 from stem.control import Controller
 
 class TorProtocol:
-    def __init__(self,limit=None,delay=None):
+    def __init__(self,limit=None,delay=0):
         self.limit=limit
         self.delay=delay
         self.ip_bin={}
@@ -45,6 +45,7 @@ class TorProtocol:
                 print("Stayed at:",self.current_tor_ip)
                 continue
             print("Jumped to:",self.current_tor_ip)
+            time.sleep(self.delay)
             """
             with Controller.from_port(port = 9051) as c:
                 c.authenticate()
