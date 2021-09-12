@@ -15,9 +15,9 @@ Follow these step for installation and configuration. ([reference guide](https:/
     
 
 	 (i) Uncomment or simply add 
-
-ControlPort 9051
-CookieAuthentication 1
+	 
+	 ControlPort 9051
+	 CookieAuthentication 1
 
 >  pip3 install torswitch
 
