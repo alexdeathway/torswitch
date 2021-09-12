@@ -1,4 +1,4 @@
-﻿# Tow Switch
+﻿# Tor Switch ## (alpha release )
 Python package to interact with tor and control IP address rotations.
 
 
@@ -11,13 +11,6 @@ Follow these step for installation and configuration. ([reference guide](https:/
 
  - configure torrc file 
 
->  sudo vim /etc/tor/torrc
-    
-
-	 (i) Uncomment or simply add 
-
-ControlPort 9051
-CookieAuthentication 1
 
 >  pip3 install torswitch
 

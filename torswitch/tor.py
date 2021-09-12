@@ -1,7 +1,11 @@
+import os
 import requests
 import time
 from stem import Signal
 from stem.control import Controller
+from torswitch import func_status
+from stem.process import launch_tor_with_config
+from torswitch import torstatus
 
 class TorProtocol:
     def __init__(self,limit=None,delay=0):
@@ -12,14 +16,20 @@ class TorProtocol:
             'http': 'socks5://127.0.0.1:9050',
             'https': 'socks5://127.0.0.1:9050'
              }
+
         self.current_ip=None
         self.current_tor_ip=None
         self.last_tor_ip=None
     
+    def Start(self):
+       
+       torstatus()
+
+
     def CurrentIp(self):
         self.current_ip=str(requests.get('https://api.ipify.org').text)
         return self.current_ip
-
+    
     def CurrentTorIp(self):
         self.current_tor_ip= requests.get('https://api.ipify.org',proxies=self.proxies).text
         return self.current_tor_ip
@@ -52,6 +62,10 @@ class TorProtocol:
                 c.signal(Signal.NEWNYM)
                 print("Jumped to:",requests.get('https://api.ipify.org', proxies=self.proxies).text)
             """
+
+    def Stop(self):
+        os.system('kill $(pgrep tor)')
+
 
 if __name__=="__main__":
     test=TorProtocol()
