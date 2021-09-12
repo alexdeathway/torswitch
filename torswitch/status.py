@@ -1,6 +1,6 @@
 from stem.connection import connect
 
-def TorStatus():
+def torstatus():
     controller = connect()
     if  controller:
       controller.close()
@@ -8,5 +8,5 @@ def TorStatus():
     return False    
 
 if __name__ == '__main__':
-  if TorStatus():
+  if torstatus():
       print("Tor is online")
