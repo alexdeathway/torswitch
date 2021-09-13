@@ -16,7 +16,7 @@ Follow these step for installation and configuration. ([reference guide](https:/
 
 ## Usage
 
-```
+```python
 from  torswitch  import  TorProtocol
  
 #Create your network
@@ -47,6 +47,10 @@ delay is to define the time gap(in seconds) between new ip address request.
 limit is to define how many time you want to make request,default is 10
 """
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 820bdcb56d453f267a71f6070a11ae5fe8a59e46
 #finally to stop tor
 thisnetwork.stop()
 
