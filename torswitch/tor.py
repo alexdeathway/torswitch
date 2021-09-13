@@ -8,9 +8,8 @@ from stem.process import launch_tor_with_config
 from torswitch import torstatus
 
 class TorProtocol:
-    def __init__(self,limit=None,delay=0):
+    def __init__(self,limit=None,):
         self.limit=limit
-        self.delay=delay
         self.ip_bin={}
         self.proxies = {
             'http': 'socks5://127.0.0.1:9050',
@@ -47,7 +46,7 @@ class TorProtocol:
            self.NewTorIp()
         return self.current_tor_ip
     
-    def TorIpRotation(self):
+    def TorIpRotation(self,delay=0):
         while True:
             self.last_tor_ip=self.current_tor_ip
             self.NewTorIp()
@@ -55,7 +54,7 @@ class TorProtocol:
                 print("Stayed at:",self.current_tor_ip)
                 continue
             print("Jumped to:",self.current_tor_ip)
-            time.sleep(self.delay)
+            time.sleep(delay)
             """
             with Controller.from_port(port = 9051) as c:
                 c.authenticate()
