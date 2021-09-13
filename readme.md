@@ -40,11 +40,13 @@ thisnetwork.AbsoluteNewTorIp()
   
 
 #for continues ip rotation use
-thisnetwork.TorIpRotation(delay=3)
+thisnetwork.TorIpRotation(delay=3,limit=12)
 
 """
 delay is to define the time gap(in seconds) between new ip address request.
+limit is to define how many time you want to make request,default is 10
 """
+
 #finally to stop tor
 thisnetwork.stop()
 

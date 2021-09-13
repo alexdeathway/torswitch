@@ -46,14 +46,15 @@ class TorProtocol:
            self.NewTorIp()
         return self.current_tor_ip
     
-    def TorIpRotation(self,delay=0):
-        while True:
+    def TorIpRotation(self,delay=0,limit=10):
+        while True and limit:
             self.last_tor_ip=self.current_tor_ip
             self.NewTorIp()
             if self.current_tor_ip==self.last_tor_ip:
                 print("Stayed at:",self.current_tor_ip)
                 continue
             print("Jumped to:",self.current_tor_ip)
+            limit-=1
             time.sleep(delay)
             """
             with Controller.from_port(port = 9051) as c:
