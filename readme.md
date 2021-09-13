@@ -16,7 +16,7 @@ Follow these step for installation and configuration. ([reference guide](https:/
 
 ## Usage
 
-```
+```python
 from  torswitch  import  TorProtocol
  
 #Create your network
@@ -45,6 +45,8 @@ thisnetwork.TorIpRotation(delay=3)
 """
 delay is to define the time gap(in seconds) between new ip address request.
 """
+
+
 #finally to stop tor
 thisnetwork.stop()
 
