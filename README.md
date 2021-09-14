@@ -55,14 +55,20 @@ thisnetwork.stop()
 
 use tor proxy
 ```python 
-import request
+
+import requests
+from torswitch import TorProtocol
+
+thisnetwork=TorProtocol()
+thisnetwork.Start()
+
 proxies = {
     'http': 'socks5://127.0.0.1:9050',
     'https': 'socks5://127.0.0.1:9050'
 }
 
-proxyid=requests.get('https://api.ipify.org',proxies=proxies).text
-
-print(proxyid)
+proxy=requests.get('https://api.ipify.org',proxies=proxies).text
+print(proxy)
+thisnetwork.Stop()
 
 ```
