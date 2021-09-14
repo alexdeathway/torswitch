@@ -1,4 +1,4 @@
-﻿# Tor Switch (alpha-unstable release )
+﻿# Tor Switch (unstable release )
 Python package to interact with tor and control IP address rotations.
 
 
@@ -50,5 +50,19 @@ limit is to define how many time you want to make request,default is 10
 
 #finally to stop tor
 thisnetwork.stop()
+
+```
+
+use tor proxy
+```python 
+import request
+proxies = {
+    'http': 'socks5://127.0.0.1:9050',
+    'https': 'socks5://127.0.0.1:9050'
+}
+
+proxyid=requests.get('https://api.ipify.org',proxies=proxies).text
+
+print(proxyid)
 
 ```

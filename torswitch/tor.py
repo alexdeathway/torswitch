@@ -15,14 +15,14 @@ class TorProtocol:
             'http': 'socks5://127.0.0.1:9050',
             'https': 'socks5://127.0.0.1:9050'
              }
-
+        self.Start=torstatus
         self.current_ip=None
         self.current_tor_ip=None
         self.last_tor_ip=None
-    
+    """
     def Start(self):
-       
-       torstatus()
+      pass
+    """   
 
 
     def CurrentIp(self):
