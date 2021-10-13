@@ -13,7 +13,7 @@ def torstatus():
       controller.close()
       return True
     print("Starting tor with default config...")  
-    launch_tor_with_config(config=config)
+    return launch_tor_with_config(config=config)
 
 def func_status(func):
     try:

@@ -7,22 +7,28 @@ from torswitch import func_status
 from stem.process import launch_tor_with_config
 from torswitch import torstatus
 
+config=   {
+            'ControlPort':'9051',
+            'CookieAuthentication':'1',
+          }
+
 class TorProtocol:
-    def __init__(self,limit=None,):
+    def __init__(self,limit=None,config=config):
         self.limit=limit
         self.ip_bin={}
         self.proxies = {
             'http': 'socks5://127.0.0.1:9050',
             'https': 'socks5://127.0.0.1:9050'
              }
-        self.Start=torstatus
+        self.config=config     
+        self.session=None
         self.current_ip=None
         self.current_tor_ip=None
         self.last_tor_ip=None
-    """
+    
     def Start(self):
-      pass
-    """   
+      
+       self.session=launch_tor_with_config(config=self.config)
 
 
     def CurrentIp(self):
@@ -64,7 +70,8 @@ class TorProtocol:
             """
 
     def Stop(self):
-        os.system('kill $(pgrep tor)')
+        self.session.kill()
+        #os.system('kill $(pgrep tor)')
 
 
 if __name__=="__main__":
