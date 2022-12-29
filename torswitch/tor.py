@@ -27,9 +27,12 @@ class TorProtocol:
         self.last_tor_ip=None
     
     def Start(self):
-      
-       self.session=launch_tor_with_config(config=self.config)
-
+      try :
+            self.session=launch_tor_with_config(config=self.config)     
+      except OSError as error :
+            os.system('kill $(pgrep tor)')
+            print("restarting tor service..")
+            self.Start()
 
     def CurrentIp(self):
         self.current_ip=str(requests.get('https://api.ipify.org').text)
