@@ -33,7 +33,7 @@ setup(
     install_requires=read_requirements(),
     keywords=['python', 'tor', 'pythontor', 'iprotation','ipaddress'],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 2 - Prototype",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",

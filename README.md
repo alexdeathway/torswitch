@@ -10,6 +10,9 @@ Follow these step for installation and configuration. ([reference guide](https:/
 > sudo apt install tor
 
  - configure torrc file 
+   edit: /etc/tor/torrc 
+    ```ControlPort 9051
+       CookieAuthentication 1
 
 
 >  pip3 install torswitch
