@@ -1,2 +1,3 @@
-from torswitch.status import torstatus,func_status
 from torswitch.tor import  TorProtocol
+from torswitch.status import TorStatus
+from torswitch.logger import logger

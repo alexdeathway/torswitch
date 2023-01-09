@@ -3,14 +3,28 @@ import requests
 import time
 from stem import Signal
 from stem.control import Controller
-from torswitch import func_status
 from stem.process import launch_tor_with_config
-from torswitch import torstatus
-
+from torswitch.logger import logger
+from stem.util import term
+from torswitch.status import TorStatus
+from functools import wraps
 config=   {
             'ControlPort':'9051',
             'CookieAuthentication':'1',
           }
+
+def print_bootstrap_lines(line):
+    if "Bootstrapped " in line:
+        print(term.format(line, term.Color.GREEN))
+
+def wrapper(method):
+    @wraps(method)
+    def _impl(self, *method_args, **method_kwargs):
+        if self.session:
+                return method(self, *method_args, **method_kwargs)
+        else:
+            print(f"Start Tor network before intiating {method.__name__}")
+    return _impl
 
 class TorProtocol:
     def __init__(self,limit=None,config=config):
@@ -25,23 +39,31 @@ class TorProtocol:
         self.current_ip=None
         self.current_tor_ip=None
         self.last_tor_ip=None
+
+    def SessionVerify(self,func):
+        if self.session:
+            func()
+        else:
+            print(f"Start Tor network first by Initiating <cls/obj>.Start before <cls/obj>.{func}")
     
     def Start(self):
-      try :
-            self.session=launch_tor_with_config(config=self.config)     
-      except OSError as error :
-            os.system('kill $(pgrep tor)')
-            print("restarting tor service..")
-            self.Start()
-
+      try:  
+            logger.info("starting tor service..")
+            self.session=launch_tor_with_config(config=self.config,init_msg_handler=print_bootstrap_lines,)     
+      except:
+            print(term.format("Stop tor running on system 'service tor stop'",term.Color.RED))
+    
+    @wrapper
     def CurrentIp(self):
         self.current_ip=str(requests.get('https://api.ipify.org').text)
         return self.current_ip
     
+    @wrapper
     def CurrentTorIp(self):
         self.current_tor_ip= requests.get('https://api.ipify.org',proxies=self.proxies).text
         return self.current_tor_ip
     
+    @wrapper
     def NewTorIp(self):
         with Controller.from_port(port = 9051) as c:
                 c.authenticate()
@@ -49,32 +71,30 @@ class TorProtocol:
                 self.current_tor_ip = requests.get('https://api.ipify.org', proxies=self.proxies).text
                 return self.current_tor_ip
 
+    @wrapper
     def AbsoluteNewTorIp(self):
         self.last_tor_ip=self.current_tor_ip
         while self.last_tor_ip==self.current_tor_ip:
            self.NewTorIp()
         return self.current_tor_ip
     
+    @wrapper
     def TorIpRotation(self,delay=0,limit=10):
+        logger.info(term.format(f"Current IP:{self.current_tor_ip}", term.Color.BLUE))
         while True and limit:
             self.last_tor_ip=self.current_tor_ip
             self.NewTorIp()
             if self.current_tor_ip==self.last_tor_ip:
-                print("Stayed at:",self.current_tor_ip)
+                logger.warning(term.format(f"Stayed at:{self.current_tor_ip}", term.Color.RED))
                 continue
-            print("Jumped to:",self.current_tor_ip)
+            logger.info(term.format(f"Stayed at:{self.current_tor_ip}", term.Color.BLUE))
             limit-=1
             time.sleep(delay)
-            """
-            with Controller.from_port(port = 9051) as c:
-                c.authenticate()
-                c.signal(Signal.NEWNYM)
-                print("Jumped to:",requests.get('https://api.ipify.org', proxies=self.proxies).text)
-            """
-
+    
+    @wrapper
     def Stop(self):
         self.session.kill()
-        #os.system('kill $(pgrep tor)')
+        os.system('kill $(pgrep tor)')
 
 
 if __name__=="__main__":
