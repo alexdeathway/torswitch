@@ -51,7 +51,7 @@ class TorProtocol:
             logger.info("starting tor service..")
             self.session=launch_tor_with_config(config=self.config,init_msg_handler=print_bootstrap_lines,)     
       except:
-            print(term.format("Stop tor running on system 'service tor stop'",term.Color.RED))
+            print(term.format("Stop tor running on system by'sudo service tor stop'",term.Color.RED))
     
     @wrapper
     def CurrentIp(self):
@@ -87,14 +87,14 @@ class TorProtocol:
             if self.current_tor_ip==self.last_tor_ip:
                 logger.warning(term.format(f"Stayed at:{self.current_tor_ip}", term.Color.RED))
                 continue
-            logger.info(term.format(f"Stayed at:{self.current_tor_ip}", term.Color.BLUE))
+            logger.info(term.format(f"Jumped to:{self.current_tor_ip}", term.Color.BLUE))
             limit-=1
             time.sleep(delay)
     
     @wrapper
     def Stop(self):
         self.session.kill()
-        os.system('kill $(pgrep tor)')
+       
 
 
 if __name__=="__main__":

@@ -1,19 +1,17 @@
 ﻿# Tor Switch (unstable release )
+
+<div align="center">
+<img width="300" src="./assets/logo/ProjectLogo.png"  alt="logo"/>
+</div>
+
 Python package to interact with tor and control IP address rotations.
 
-
 ## installation 
-Follow these step for installation and configuration. ([reference guide](https://sylvaindurand.org/use-tor-with-python/))
  - install tor
  
+ > sudo apt install tor
 
-> sudo apt install tor
-
- - configure torrc file 
-   edit: /etc/tor/torrc 
-    ```ControlPort 9051
-       CookieAuthentication 1
-
+ - install torswitch
 
 >  pip3 install torswitch
 
