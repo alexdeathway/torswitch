@@ -40,11 +40,6 @@ class TorProtocol:
         self.current_tor_ip=None
         self.last_tor_ip=None
 
-    def SessionVerify(self,func):
-        if self.session:
-            func()
-        else:
-            print(f"Start Tor network first by Initiating <cls/obj>.Start before <cls/obj>.{func}")
     
     def Start(self):
       try:  
