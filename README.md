@@ -1,7 +1,11 @@
-﻿# Tor Switch (unstable release )
+﻿# Tor Switch
 
 <div align="center">
 <img width="300" src="./assets/logo/ProjectLogo.png"  alt="logo"/>
+
+[![PyPI version](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=PyPI&query=$.info.version&url=https://pypi.org/pypi/torswitch/json)](https://pypi.org/project/torswitch/) [![License](https://img.shields.io/github/license/alexdeathway/torswitch.svg)](https://github.com/alexdeathway/torswitch/blob/main/LICENSE)
+
+
 </div>
 
 Python package to interact with tor and control IP address rotations.
