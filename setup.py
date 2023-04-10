@@ -18,7 +18,7 @@ def get_version():
         Version=ver.read()
     return Version    
 
-DESCRIPTION = 'A basic package for using tor proxy with python.'
+DESCRIPTION = 'Python package for an easy-to-use interaction with the Tor proxy and controlling IP address rotations.'
 
 # Setting up
 setup(
@@ -31,13 +31,13 @@ setup(
     long_description=long_description,
     packages=find_packages(),
     install_requires=read_requirements(),
-    keywords=['python', 'tor', 'pythontor', 'iprotation','ipaddress'],
+    keywords=['python', 'tor', 'pythontor', 'onion','ipaddress'],
     classifiers=[
-        "Development Status :: 2 - Prototype",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
-        "Operating System :: Unix",
-        "Operating System :: MacOS :: MacOS X",
+    #    "Operating System :: Unix",
+    #    "Operating System :: MacOS :: MacOS X",
     #    "Operating System :: Microsoft :: Windows",
     ]
 )

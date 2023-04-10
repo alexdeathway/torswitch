@@ -1,8 +1,10 @@
 ﻿# Tor Switch
 
 <div align="center">
-<img width="300" src="./assets/logo/ProjectLogo.png"  alt="logo"/>
+<img width="300" src="https://github.com/alexdeathway/torswitch/blob/master/assets/logo/ProjectLogo.png"  alt="logo"/>
 
+[![Build and Publish Package](https://github.com/alexdeathway/torswitch/actions/workflows/build%20&%20publish.yaml/badge.svg)](https://github.com/alexdeathway/torswitch/actions/workflows/build%20&%20publish.yaml)
+[![Python Package Test](https://github.com/alexdeathway/torswitch/actions/workflows/test.yaml/badge.svg)](https://github.com/alexdeathway/torswitch/actions/workflows/test.yaml)
 [![PyPI version](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=PyPI&query=$.info.version&url=https://pypi.org/pypi/torswitch/json)](https://pypi.org/project/torswitch/) [![License](https://img.shields.io/github/license/alexdeathway/torswitch.svg)](https://github.com/alexdeathway/torswitch/blob/main/LICENSE)
 
 
@@ -10,7 +12,7 @@
 
 Python package to interact with tor and control IP address rotations.
 
-## installation 
+## Installation 
  - install tor
  
  > sudo apt install tor
@@ -58,7 +60,7 @@ thisnetwork.stop()
 
 ```
 
-use tor proxy
+## Use tor as proxy
 ```python 
 
 import requests
@@ -77,3 +79,4 @@ print(proxy)
 thisnetwork.Stop()
 
 ```
+--- 

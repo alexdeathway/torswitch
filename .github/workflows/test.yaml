@@ -13,21 +13,27 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: "3.10.5"
 
+      - name: Install Tor
+        run: sudo apt install tor
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-
+      
+      - name: Stop Tor services #<running>
+        run: sudo service tor stop
+      
       - name: Test package
         run: pytest
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: test-results
           path: |
