@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    environment: 'Publish'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

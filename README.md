@@ -56,7 +56,7 @@ limit is to define how many time you want to make request,default is 10
 
 
 #finally to stop tor
-thisnetwork.stop()
+thisnetwork.Stop()
 
 ```
 
