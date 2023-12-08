@@ -46,7 +46,7 @@ class TorProtocol:
             logger.info("starting tor service..")
             self.session=launch_tor_with_config(config=self.config,init_msg_handler=print_bootstrap_lines,)     
       except:
-            print(term.format("Stop tor running on system by'sudo service tor stop'",term.Color.RED))
+            print(term.format("Stop tor running on system by'sudo service tor stop' or 'sudo killall tor' ",term.Color.RED))
     
     @wrapper
     def CurrentIp(self):
